@@ -35,9 +35,27 @@ def arithmetic_arranger(problems, show_answers=False):
         elif p[1] == '-':
             solution = int(p[0]) - int(p[2])
             solutions.append(solution)
-        
     
+    
+    top = ""
+    bottom = ""
+    line = ""
+    solution = ""
+    for i in problems:
+        first_number = i.split()[0]
+        operator = i.split()[1]
+        last_number = i.split()[2]
+        # distance of biggest number +2 (+2 for the operator position)
+        distance = max(len(first_number), len(last_number)) + 2
+        
+        top = top + first_number.rjust(distance)
+        bottom = last_number.rjust(distance)
+        line = line + "-"
+        print(line)
+        
+        
 
+    
 
     return problems, solutions 
 
