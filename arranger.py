@@ -3,7 +3,7 @@ def arithmetic_arranger(problems, show_answers=False):
     # Error: if amount of problems given is greater than 5
     if len(problems) > 5: 
         return 'Error: Too many problems.'
-   
+    
     # separate equation into operators
     operators = []
     for i in problems: 
@@ -41,23 +41,26 @@ def arithmetic_arranger(problems, show_answers=False):
     bottom = ""
     line = ""
     solution = ""
+    arranged_problem = []
+    solution_item = 0
     for i in problems:
         first_number = i.split()[0]
         operator = i.split()[1]
         last_number = i.split()[2]
         # distance of biggest number +2 (+2 for the operator position)
         distance = max(len(first_number), len(last_number)) + 2
-        
-        top = top + first_number.rjust(distance)
-        bottom = last_number.rjust(distance)
-        line = line + "-"
-        print(line)
-        
-        
-
+        top = top + first_number.rjust(distance) + "    "
+        bottom = bottom + operator + last_number.rjust(distance - 1) + "    "
+        line = line + "-"*distance + "    "
+        solution = solution + str(solutions[solution_item]).rjust(distance) + "    "
+        solution_item += 1
+    if show_answers == True:
+        return f'{top}\n{bottom}\n{line}\n{solution}'
+    else: 
+        return f'{top}\n{bottom}\n{line}'
     
+    
+        
 
-    return problems, solutions 
 
-
-print(f'\n{arithmetic_arranger(["32 + 8", "1 - 3801", "9999 + 9999", "523 - 49"])}')
+print(arithmetic_arranger(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40", "653 + 87"], True))
